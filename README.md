@@ -1,4 +1,5 @@
 # NexusDesk - Multi-Agent Customer Support System
+
 # NexusDesk - 多智能体客户支持系统
 
 NexusDesk is a modern, web-based customer support chat application built with React and TypeScript. It provides a complete solution for businesses to manage customer interactions, featuring distinct interfaces for administrators, support agents, and visitors.
@@ -27,18 +28,23 @@ This project is a static web application and does not require a complex build pr
 
 1.  **Prerequisite**: You need a local web server to serve the files correctly. If you have Node.js installed, you can use the `serve` package.
     - Install `serve` globally: `npm install -g serve`
-   前置条件：你需要一个本地 Web 服务器来正确地提供文件。如果已安装 Node.js，可以使用 `serve` 包。
-   - 全局安装 serve：`npm install -g serve`
+      前置条件：你需要一个本地 Web 服务器来正确地提供文件。如果已安装 Node.js，可以使用 `serve` 包。
+
+- 全局安装 serve：`npm install -g serve`
+
 2.  **Start the Server**:
     - Navigate to the project's root directory in your terminal.
     - Run the command: `serve`
-   启动服务器：
-   - 在终端进入项目根目录。
-   - 运行命令：`serve`
+      启动服务器：
+
+- 在终端进入项目根目录。
+- 运行命令：`serve`
+
 3.  **Access the App**:
     - Open your web browser and go to the local address provided by the server (e.g., `http://localhost:3000`).
-   访问应用：
-   - 打开浏览器，访问服务器提供的本地地址（如 `http://localhost:3000`）。
+      访问应用：
+
+- 打开浏览器，访问服务器提供的本地地址（如 `http://localhost:3000`）。
 
 ## Project Structure / 项目结构
 
@@ -73,47 +79,49 @@ This project is a static web application and does not require a complex build pr
 - **State**: The `authStore` manages the current user's session, which is persisted in `sessionStorage`. / 状态：`authStore` 管理当前用户会话，并持久化于 `sessionStorage`。
 
 **Test Keys / 测试密钥：**
--   **Admin Key**: `ADMIN-SUPER-SECRET` / 管理员密钥：`ADMIN-SUPER-SECRET`
--   **Agent "Alice" Key**: `AGENT-ALICE-123` / 客服“Alice”密钥：`AGENT-ALICE-123`
--   **Agent "Bob" Key** (Suspended): `AGENT-BOB-456` / 客服“Bob”密钥（已停用）：`AGENT-BOB-456`
+
+- **Admin Key**: `ADMIN-SUPER-SECRET` / 管理员密钥：`ADMIN-SUPER-SECRET`
+- **Agent "Alice" Key**: `AGENT-ALICE-123` / 客服“Alice”密钥：`AGENT-ALICE-123`
+- **Agent "Bob" Key** (Suspended): `AGENT-BOB-456` / 客服“Bob”密钥（已停用）：`AGENT-BOB-456`
 
 ### 2. Admin Panel (`/admin`) / 管理员面板（`/admin`）
 
 Accessed with an admin key. / 使用管理员密钥访问。
 
--   **Dashboard**: Provides at-a-glance statistics about total agents, online agents, and key status. / 仪表盘：一览所有客服、在线客服、密钥状态等统计。
--   **Key Management**: A full CRUD interface for managing access keys. Admins can create, edit, delete, suspend, and activate keys. / 密钥管理：完整的密钥增删改查界面。管理员可创建、编辑、删除、停用、激活密钥。
--   **Agent Management**: A view-only list of all agents in the system, showing their status, session load, and unique `shareId`. / 客服管理：只读客服列表，显示状态、会话负载、唯一 `shareId`。
+- **Dashboard**: Provides at-a-glance statistics about total agents, online agents, and key status. / 仪表盘：一览所有客服、在线客服、密钥状态等统计。
+- **Key Management**: A full CRUD interface for managing access keys. Admins can create, edit, delete, suspend, and activate keys. / 密钥管理：完整的密钥增删改查界面。管理员可创建、编辑、删除、停用、激活密钥。
+- **Agent Management**: A view-only list of all agents in the system, showing their status, session load, and unique `shareId`. / 客服管理：只读客服列表，显示状态、会话负载、唯一 `shareId`。
 
 ### 3. Agent Interface (`/agent`) / 客服界面（`/agent`）
 
 Accessed with an agent key. / 使用客服密钥访问。
 
--   **Live Chat UI**: A three-column layout for professional chat management. / 实时聊天 UI：三栏式专业聊天管理界面。
-    -   **Customer List**: A list of all active and pending conversations. / 客户列表：所有活跃和待处理会话。
-    -   **Chat Window**: The main area for interacting with a selected customer, including message history and a message input form. / 聊天窗口：与选中客户互动的主区域，含消息历史和输入框。
-    -   **Customer Details**: Displays information about the selected customer (IP address, device info, etc.). / 客户详情：显示选中客户的 IP、设备信息等。
--   **Agent Settings**:
-    -   **Profile**: Agents can change their display name and generate a new random avatar. / 个人资料：可修改显示名、生成新头像。
-    -   **Status**: Agents can set their status to `online`, `busy`, or `offline` from the sidebar. / 状态：可在侧边栏设置为 `在线`、`忙碌`、`离线`。
-    -   **Quick Replies, Welcome Messages, Blacklist**: Fully functional settings to manage chat shortcuts, automated greetings, and block specific IPs. / 快捷回复、欢迎语、黑名单：完整设置，管理聊天快捷语、自动问候、屏蔽 IP。
-    -   **Share Link & QR Code**: Each agent has a unique link and corresponding QR code to share with visitors. / 分享链接 & 二维码：每位客服有唯一链接和二维码，便于访客接入。
+- **Live Chat UI**: A three-column layout for professional chat management. / 实时聊天 UI：三栏式专业聊天管理界面。
+  - **Customer List**: A list of all active and pending conversations. / 客户列表：所有活跃和待处理会话。
+  - **Chat Window**: The main area for interacting with a selected customer, including message history and a message input form. / 聊天窗口：与选中客户互动的主区域，含消息历史和输入框。
+  - **Customer Details**: Displays information about the selected customer (IP address, device info, etc.). / 客户详情：显示选中客户的 IP、设备信息等。
+- **Agent Settings**:
+  - **Profile**: Agents can change their display name and generate a new random avatar. / 个人资料：可修改显示名、生成新头像。
+  - **Status**: Agents can set their status to `online`, `busy`, or `offline` from the sidebar. / 状态：可在侧边栏设置为 `在线`、`忙碌`、`离线`。
+  - **Quick Replies, Welcome Messages, Blacklist**: Fully functional settings to manage chat shortcuts, automated greetings, and block specific IPs. / 快捷回复、欢迎语、黑名单：完整设置，管理聊天快捷语、自动问候、屏蔽 IP。
+  - **Share Link & QR Code**: Each agent has a unique link and corresponding QR code to share with visitors. / 分享链接 & 二维码：每位客服有唯一链接和二维码，便于访客接入。
 
 ### 4. Visitor Chat (`/chat/:shareId`) / 访客聊天（`/chat/:shareId`）
 
--   **Dynamic Routing**: Visitors access the chat using an agent-specific URL (e.g., `.../#/chat/chat-with-alice`). / 动态路由：访客通过客服专属链接访问聊天（如 `.../#/chat/chat-with-alice`）。
--   **Session Creation**: The mock API automatically creates a new customer and chat session when a visitor connects. / 会话创建：mock API 在访客连接时自动创建新客户和会话。
--   **Real-Time Communication**: The interface polls the mock API to simulate real-time message updates from the agent. / 实时通信：界面轮询 mock API，模拟客服消息实时更新。
+- **Dynamic Routing**: Visitors access the chat using an agent-specific URL (e.g., `.../#/chat/chat-with-alice`). / 动态路由：访客通过客服专属链接访问聊天（如 `.../#/chat/chat-with-alice`）。
+- **Session Creation**: The mock API automatically creates a new customer and chat session when a visitor connects. / 会话创建：mock API 在访客连接时自动创建新客户和会话。
+- **Real-Time Communication**: The interface polls the mock API to simulate real-time message updates from the agent. / 实时通信：界面轮询 mock API，模拟客服消息实时更新。
 
 ## State Management (Zustand) / 状态管理（Zustand）
 
--   **`authStore`**: Handles global user state. `login`, `logout`, `updateCurrentUser`. / 管理全局用户状态。`login`、`logout`、`updateCurrentUser`。
--   **`adminStore`**: Manages data for the admin panel. `fetchDashboardData`, `createKey`, `updateKey`, `deleteKey`. / 管理员面板数据。`fetchDashboardData`、`createKey`、`updateKey`、`deleteKey`。
--   **`agentStore`**: Manages all data for the agent view. `fetchAgentData`, `setActiveSessionId`, `sendMessage`, `updateSettings`. / 客服界面所有数据。`fetchAgentData`、`setActiveSessionId`、`sendMessage`、`updateSettings`。
+- **`authStore`**: Handles global user state. `login`, `logout`, `updateCurrentUser`. / 管理全局用户状态。`login`、`logout`、`updateCurrentUser`。
+- **`adminStore`**: Manages data for the admin panel. `fetchDashboardData`, `createKey`, `updateKey`, `deleteKey`. / 管理员面板数据。`fetchDashboardData`、`createKey`、`updateKey`、`deleteKey`。
+- **`agentStore`**: Manages all data for the agent view. `fetchAgentData`, `setActiveSessionId`, `sendMessage`, `updateSettings`. / 客服界面所有数据。`fetchAgentData`、`setActiveSessionId`、`sendMessage`、`updateSettings`。
 
 ## Mock API
 
 The file `services/mockApi.ts` is the heart of the application's data layer. / `services/mockApi.ts` 是应用数据层的核心。
--   **In-Memory Database**: It contains a `DB` object that holds all users, keys, sessions, messages, etc., in memory. / 内存数据库：包含 `DB` 对象，存储所有用户、密钥、会话、消息等。
--   **Async Simulation**: All functions are `async` and use a `networkDelay` to simulate real network latency. / 异步模拟：所有函数均为 `async`，并用 `networkDelay` 模拟真实网络延迟。
--   **Data Manipulation**: It uses the `immer` library (`produce`) for safe and immutable updates to the state, preventing common bugs. / 数据操作：使用 `immer`（`produce`）安全、不可变地更新状态，防止常见 bug。
+
+- **In-Memory Database**: It contains a `DB` object that holds all users, keys, sessions, messages, etc., in memory. / 内存数据库：包含 `DB` 对象，存储所有用户、密钥、会话、消息等。
+- **Async Simulation**: All functions are `async` and use a `networkDelay` to simulate real network latency. / 异步模拟：所有函数均为 `async`，并用 `networkDelay` 模拟真实网络延迟。
+- **Data Manipulation**: It uses the `immer` library (`produce`) for safe and immutable updates to the state, preventing common bugs. / 数据操作：使用 `immer`（`produce`）安全、不可变地更新状态，防止常见 bug。
