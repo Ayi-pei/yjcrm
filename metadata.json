@@ -1,0 +1,6 @@
+{
+  "name": "NexusDesk - Customer Support Chat",
+  "description": "A comprehensive chat support application for agents to communicate with visitors in real-time. Features include live chat, agent and key management for admins, and visitor-facing chat interfaces.",
+  "requestFramePermissions": [],
+  "prompt": ""
+}
