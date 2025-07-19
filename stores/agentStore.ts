@@ -1,4 +1,3 @@
-
 import { create } from 'zustand';
 import { type Customer, type ChatSession, type ChatMessage, type AgentSettings, type Agent } from '../types';
 import { api } from '../services/mockApi';
