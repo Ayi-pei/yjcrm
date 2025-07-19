@@ -7,7 +7,26 @@
     <title>云聚CRM客服</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-      /* Custom scrollbar for a more refined look */
+      /* Custom animations for enhanced UI */
+      @keyframes fade-in {
+        from { opacity: 0; transform: translateY(10px); }
+        to { opacity: 1; transform: translateY(0); }
+      }
+      
+      @keyframes slide-up {
+        from { transform: translateY(100%); }
+        to { transform: translateY(0); }
+      }
+      
+      .animate-fade-in {
+        animation: fade-in 0.3s ease-out;
+      }
+      
+      .animate-slide-up {
+        animation: slide-up 0.3s ease-out;
+      }
+
+      /* Enhanced scrollbar */
       ::-webkit-scrollbar {
         width: 6px;
         height: 6px;
@@ -16,11 +35,16 @@
         background: #f1f5f9;
       }
       ::-webkit-scrollbar-thumb {
-        background: #94a3b8;
+        background: #cbd5e1;
         border-radius: 3px;
       }
       ::-webkit-scrollbar-thumb:hover {
-        background: #64748b;
+        background: #94a3b8;
+      }
+
+      /* Smooth transitions */
+      input:focus, textarea:focus, select:focus {
+        transition: all 0.2s ease-in-out;
       }
     </style>
 
@@ -41,9 +65,9 @@
   }
 }
 </script>
-  <script type="module" crossorigin src="/assets/index-zWtfEADc.js"></script>
+  <script type="module" crossorigin src="/assets/index-CyiKTwa3.js"></script>
 </head>
   <body class="bg-slate-100 antialiased">
-    <div id="root"></div>
+    <div id="root"></div>
   </body>
 </html>

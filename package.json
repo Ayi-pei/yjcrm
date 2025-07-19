@@ -1,12 +1,19 @@
 {
-  "name": "nexusdesk---customer-support-chat",
+  "name": "yjcrm",
   "private": true,
   "version": "0.0.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "deploy": "chmod +x scripts/deploy.sh && ./scripts/deploy.sh",
+    "db:create": "wrangler d1 create nexusdesk-db",
+    "db:migrate": "wrangler d1 execute nexusdesk-db --file=./schema.sql",
+    "db:seed": "wrangler d1 execute nexusdesk-db --file=./seed.sql",
+    "worker:deploy": "wrangler deploy",
+    "worker:dev": "wrangler dev",
+    "worker:tail": "wrangler tail"
   },
   "dependencies": {
     "@headlessui/react": "1.7.18",
@@ -22,6 +29,7 @@
     "@types/react": "^19.1.8",
     "@types/react-dom": "^19.1.6",
     "typescript": "~5.7.2",
-    "vite": "^6.2.0"
+    "vite": "^6.2.0",
+    "wrangler": "^4.25.0"
   }
 }

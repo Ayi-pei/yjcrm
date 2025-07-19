@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useAuthStore } from "../../stores/authStore";
 import { APP_NAME, ICONS } from "../../constants";
 import Button from "../ui/Button";
+import { designSystem } from "../../styles/design-system";
 
 const LoginPage: React.FC = () => {
   const [keyValue, setKeyValue] = useState("");
@@ -18,11 +19,11 @@ const LoginPage: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-slate-100 flex flex-col justify-center items-center">
-      <div className="w-full max-w-md p-8 space-y-8 bg-white shadow-2xl rounded-2xl">
+    <div className={`min-h-screen ${designSystem.gradients.chat} flex flex-col justify-center items-center`}>
+      <div className={`w-full max-w-md p-8 space-y-8 bg-white/80 backdrop-blur-lg ${designSystem.shadows.xl} ${designSystem.borderRadius.xl} border border-white/20`}>
         <div className="text-center">
-          <h1 className="text-4xl font-bold text-sky-600">{APP_NAME}</h1>
-          <p className="mt-2 text-slate-500">客服支持中心登录</p>
+          <h1 className="text-4xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">{APP_NAME}</h1>
+          <p className="mt-2 text-slate-600">客服支持中心登录</p>
         </div>
         <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
           <div className="rounded-md shadow-sm -space-y-px">

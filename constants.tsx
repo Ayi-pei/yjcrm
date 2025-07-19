@@ -213,6 +213,70 @@ export const ICONS = {
       />
     </svg>
   ),
+  check: (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      className="h-3 w-3"
+      fill="none"
+      viewBox="0 0 24 24"
+      stroke="currentColor"
+    >
+      <path
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth={2}
+        d="M5 13l4 4L19 7"
+      />
+    </svg>
+  ),
+  checkDouble: (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      className="h-3 w-3"
+      fill="none"
+      viewBox="0 0 24 24"
+      stroke="currentColor"
+    >
+      <path
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth={2}
+        d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+      />
+    </svg>
+  ),
+  menu: (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      className="h-6 w-6"
+      fill="none"
+      viewBox="0 0 24 24"
+      stroke="currentColor"
+    >
+      <path
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth={2}
+        d="M4 6h16M4 12h16M4 18h16"
+      />
+    </svg>
+  ),
+  arrowLeft: (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      className="h-5 w-5"
+      fill="none"
+      viewBox="0 0 24 24"
+      stroke="currentColor"
+    >
+      <path
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth={2}
+        d="M15 19l-7-7 7-7"
+      />
+    </svg>
+  ),
   attach: (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -379,4 +443,4 @@ export const ICONS = {
   ),
 };
 
-export const APP_NAME = "云聚CRM客服";
+export const APP_NAME = "NexusDesk";

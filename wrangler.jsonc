@@ -1,7 +1,0 @@
-{
-    "name": "yjcrm", // 您的 Worker 名称，可自定义
-    "compatibility_date": "2025-07-18", // 兼容性日期，建议使用当前日期或固定版本
-    "assets": {
-        "directory": "./dist" // 指向 Vite 构建的输出目录
-    }
-}
