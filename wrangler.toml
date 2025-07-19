@@ -1,5 +1,7 @@
+# wrangler.toml
 name = "nexusdesk-api"
-compatibility_date = "2024-01-15"
+compatibility_date = "2025-07-20"
+account_id = "87436086e0f72739a9ef0dd1433958af" # 添加这行
 main = "src/worker.ts"
 
 [assets]
@@ -7,8 +9,12 @@ directory = "./dist"
 
 [[d1_databases]]
 binding = "DB"
-database_name = "prod-d1-tutorial"
-database_id = "d155fcab-6f9d-4eed-82f1-87c43b20a35d"
+database_name = "nexusdesk-db"
+database_id = "5ab6521e-6889-43c1-afd8-ec3fb18303ac"
 
 [vars]
 ENVIRONMENT = "production"
+
+[[durable_objects.bindings]]
+name = "CHAT_ROOM"
+class_name = "ChatRoom"

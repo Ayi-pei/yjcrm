@@ -1,11 +1,19 @@
 // WebSocket Durable Object 处理实时聊天
+interface Env {
+  DB: D1Database;
+  CHAT_ROOM: DurableObjectNamespace;
+  ENVIRONMENT: string;
+}
+
 export class ChatRoom {
   private state: DurableObjectState;
   private sessions: Map<string, WebSocket>;
   private userSessions: Map<string, Set<string>>; // userId -> Set of sessionIds
+  private env: Env;
 
-  constructor(state: DurableObjectState, env: any) {
+  constructor(state: DurableObjectState, env: Env) {
     this.state = state;
+    this.env = env;
     this.sessions = new Map();
     this.userSessions = new Map();
   }

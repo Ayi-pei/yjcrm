@@ -1,4 +1,4 @@
-import { realApi } from "./realApi";
+import { config } from './config';
 
 class WebSocketManager {
   private ws: WebSocket | null = null;
@@ -18,7 +18,8 @@ class WebSocketManager {
     if (!this.userId || !this.userType) return;
 
     try {
-      this.ws = realApi.createWebSocketConnection(this.userId, this.userType);
+      const wsUrl = `${config.wsBaseUrl}/websocket?userId=${this.userId}&userType=${this.userType}`;
+      this.ws = new WebSocket(wsUrl);
 
       this.ws.onopen = () => {
         console.log("WebSocket connected");

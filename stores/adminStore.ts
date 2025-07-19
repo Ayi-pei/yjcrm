@@ -39,17 +39,19 @@ export const useAdminStore = create<AdminState>((set) => ({
   },
   createKey: async (data) => {
     const newKey = await api.createKey(data);
-    set((state) => ({ keys: [...state.keys, newKey] }));
+    set((state) => ({ ...state, keys: [...state.keys, newKey] }));
   },
   updateKey: async (id, data) => {
     const updatedKey = await api.updateKey(id, data);
     set((state) => ({
+      ...state,
       keys: state.keys.map((k) => (k.id === id ? updatedKey : k)),
     }));
   },
   deleteKey: async (id: string) => {
     await api.deleteKey(id);
     set((state) => ({
+      ...state,
       keys: state.keys.filter((k) => k.id !== id),
     }));
   },

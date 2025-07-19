@@ -2,6 +2,7 @@ import { create } from 'zustand';
 import { type Customer, type ChatSession, type ChatMessage, type AgentSettings, type Agent } from '../types';
 import { api } from '../services/mockApi';
 import { produce } from 'immer';
+import { wsManager } from '../services/websocketManager';
 
 
 interface AgentState {
@@ -48,6 +49,18 @@ export const useAgentStore = create<AgentState>((set, get) => ({
         activeSessionId: sessions.length > 0 ? sessions[0].id : null,
       });
 
+      // Setup WebSocket event listeners for real-time functionality
+      wsManager.on('new_message', (messageData: ChatMessage) => {
+        set(produce((draft: AgentState) => {
+          draft.messages.push(messageData);
+        }));
+      });
+
+      wsManager.on('typing_status', (typingData: any) => {
+        // Handle typing status updates
+        console.log('Typing status:', typingData);
+      });
+
     } catch (err) {
       const error = err instanceof Error ? err.message : 'Failed to fetch agent data';
       set({ error, isLoading: false });
@@ -57,7 +70,15 @@ export const useAgentStore = create<AgentState>((set, get) => ({
   setActiveSessionId: (sessionId) => set({ activeSessionId: sessionId }),
   
   sendMessage: async (sessionId: string, senderId: string, content: string, type: 'text' | 'image' | 'file' = 'text') => {
+    const messageId = typeof crypto !== 'undefined' ? crypto.randomUUID() : Math.random().toString(36);
+    
+    // Send to backend API
     const newMessage = await api.sendMessage(sessionId, senderId, 'agent', content, type);
+    
+    // Broadcast through WebSocket for real-time updates
+    wsManager.sendChatMessage(sessionId, messageId, content, type);
+    
+    // Update local state
     set(produce((draft: AgentState) => {
       draft.messages.push(newMessage);
       const session = draft.sessions.find(s => s.id === sessionId);

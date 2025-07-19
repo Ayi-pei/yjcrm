@@ -1,12 +1,16 @@
 // 新的 API 服务 - 连接真实的 Cloudflare Workers 后端
 // 这个文件将替换 mockApi.ts
 
-// 🔧 配置您的 Worker URL
-const API_BASE_URL = "https://nexusdesk-api.你的用户名.workers.dev/api";
+import { type Key, type Agent, type AgentSettings, type ChatMessage } from '../types';
+
+import { config } from './config';
+
+// 🔧 使用配置文件中的 URL
+const API_BASE_URL = config.apiBaseUrl;
 
 // 真实 API 服务类
 class ApiService {
-  private async request(endpoint: string, options: RequestInit = {}) {
+  private async request<T = any>(endpoint: string, options: RequestInit = {}): Promise<T> {
     const url = `${API_BASE_URL}${endpoint}`;
     
     try {
@@ -22,7 +26,7 @@ class ApiService {
         throw new Error(`API Error: ${response.status} ${response.statusText}`);
       }
 
-      return response.json();
+      return response.json() as Promise<T>;
     } catch (error) {
       console.error('API Request failed:', error);
       throw error;
@@ -50,30 +54,35 @@ class ApiService {
     };
   }
 
-  async getKeys() {
-    return this.request('/admin/keys');
+  async getKeys(): Promise<Key[]> {
+    return this.request<Key[]>('/admin/keys');
   }
 
-  async createKey(data: any) {
-    return this.request('/admin/keys', {
+  async createKey(data: {
+    type: "admin" | "agent";
+    agentId?: string;
+    note: string;
+    expiresAt: string | null;
+  }): Promise<Key> {
+    return this.request<Key>('/admin/keys', {
       method: 'POST',
       body: JSON.stringify(data),
     });
   }
 
-  async updateKey(id: string, data: any) {
-    return this.request(`/admin/keys/${id}`, {
+  async updateKey(id: string, data: Partial<Key>): Promise<Key> {
+    return this.request<Key>(`/admin/keys/${id}`, {
       method: 'PUT',
       body: JSON.stringify(data),
     });
   }
 
-  async deleteKey(id: string) {
-    return this.request(`/admin/keys/${id}`, { method: 'DELETE' });
+  async deleteKey(id: string): Promise<void> {
+    return this.request<void>(`/admin/keys/${id}`, { method: 'DELETE' });
   }
 
-  async getAgents() {
-    return this.request('/admin/agents');
+  async getAgents(): Promise<Agent[]> {
+    return this.request<Agent[]>('/admin/agents');
   }
 
   // 💼 客服相关
@@ -81,12 +90,12 @@ class ApiService {
     return this.request(`/agent/${agentId}/dashboard`);
   }
 
-  async getAgentSettings(agentId: string) {
-    return this.request(`/agent/${agentId}/settings`);
+  async getAgentSettings(agentId: string): Promise<AgentSettings> {
+    return this.request<AgentSettings>(`/agent/${agentId}/settings`);
   }
 
-  async updateAgentSettings(agentId: string, data: any) {
-    return this.request(`/agent/${agentId}/settings`, {
+  async updateAgentSettings(agentId: string, data: Partial<AgentSettings>): Promise<AgentSettings> {
+    return this.request<AgentSettings>(`/agent/${agentId}/settings`, {
       method: 'PUT',
       body: JSON.stringify(data),
     });
@@ -115,12 +124,12 @@ class ApiService {
     return this.request(`/chat/visitor/session/${sessionId}`);
   }
 
-  async getSessionMessages(sessionId: string) {
-    return this.request(`/chat/session/${sessionId}/messages`);
+  async getSessionMessages(sessionId: string): Promise<ChatMessage[]> {
+    return this.request<ChatMessage[]>(`/chat/session/${sessionId}/messages`);
   }
 
-  async sendMessage(sessionId: string, senderId: string, senderType: string, content: string, type = 'text') {
-    return this.request(`/chat/session/${sessionId}/messages`, {
+  async sendMessage(sessionId: string, senderId: string, senderType: string, content: string, type = 'text'): Promise<ChatMessage> {
+    return this.request<ChatMessage>(`/chat/session/${sessionId}/messages`, {
       method: 'POST',
       body: JSON.stringify({ senderId, senderType, content, type }),
     });
@@ -131,7 +140,7 @@ class ApiService {
     return this.getDashboardData();
   }
 
-  async getMessages(sessionId: string) {
+  async getMessages(sessionId: string): Promise<ChatMessage[]> {
     return this.getSessionMessages(sessionId);
   }
 }

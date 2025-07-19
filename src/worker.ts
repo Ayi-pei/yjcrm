@@ -1,3 +1,5 @@
+/// <reference types="@cloudflare/workers-types" />
+
 // Cloudflare Workers 主入口文件
 // 处理 API 请求和 WebSocket 连接
 
@@ -12,8 +14,27 @@ import { handleApiRequest } from './api/routes';
 import { ChatRoom } from './websocket/chatRoom';
 
 export default {
-  async fetch(request: Request, env: Env, ctx: ExecutionContext): Promise<Response> {
+  async fetch(request: Request, env: Env, _ctx: ExecutionContext): Promise<Response> {
     const url = new URL(request.url);
+
+    // 添加数据库验证端点
+    if (url.pathname === "/debug/db") {
+      try {
+        const result = await env.DB.prepare("SELECT name FROM sqlite_schema WHERE type='table'").all();
+        return new Response(JSON.stringify(result), {
+          headers: { 
+            'Content-Type': 'application/json',
+            'Access-Control-Allow-Origin': '*' 
+          }
+        });
+      } catch (error) {
+        const errorMessage = error instanceof Error ? error.message : 'Unknown database error';
+        return new Response(`Database error: ${errorMessage}`, { 
+          status: 500,
+          headers: { 'Access-Control-Allow-Origin': '*' } 
+        });
+      }
+    }
     
     // CORS 处理
     const corsHeaders = {
@@ -48,8 +69,9 @@ export default {
 
     } catch (error) {
       console.error('Worker error:', error);
+      const errorMessage = error instanceof Error ? error.message : 'Internal Server Error';
       return new Response(
-        JSON.stringify({ error: 'Internal Server Error' }), 
+        JSON.stringify({ error: errorMessage }), 
         { 
           status: 500, 
           headers: { 
