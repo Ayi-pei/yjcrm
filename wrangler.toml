@@ -1,5 +1,5 @@
 # wrangler.toml
-name = "nexusdesk-api"
+name = "yjcrm"
 compatibility_date = "2025-07-20"
 account_id = "87436086e0f72739a9ef0dd1433958af" # 添加这行
 main = "src/worker.ts"
